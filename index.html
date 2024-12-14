@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        h1 {
+            text-transform: uppercase;
+            font-size: 40px;
+        }
+        button{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: red;
+            color: yellow;
+        }
+        #cube1{
+            font-weight:bold ;
+           
+        }
+       
+    </style>
+</head>
+
+<body>
+    <h1>Develop by <strong style="color: darkblue;"> NRI NIIST College Bhopal </strong> AIML First Year Girls Batch-B
+    </h1>
+    <label>Number: </label>
+    <input type="text" id="d1" autocomplete="off">
+    <button type="button" onclick="isEven()">Even</button>
+    <button type="button" onclick="isPostive()">Positive</button>
+    <button type="button" onclick="isFactor()">Factor</button>
+    <button type="button" onclick="SumOfNatural_Number()">Sum of Natural Number</button>
+    <button type="button" onclick="isPrimeNumber()">Prime Number</button>
+    <button type="button" onclick="isPalindrome()">Panlindrome</button>
+    <button type="button" onclick="isArmstrongNumber()">Armstrong</button>
+    <button type="button" onclick="isSquare()">Square</button>
+    <button type="button" id="cube1" onclick="isSqureRoot()">√</button>
+    <button type="button" onclick="isSquareCube()">()3</button>
+    <button id="cube1" type="button" onclick="isRootCube()">∛</button>
+    <button type="button" onclick="isfactorial()">Factorial</button>
+
+    <label>From</label>
+    <select id="from">
+        <option value="bin">Binary Number</option>
+        <option value="octal">Octal Number</option>
+        <option value="decimal">Decimal Number</option>
+        <option value="hexadecimal">Hexadecimal Number</option>
+    </select>
+
+    <label>To</label>
+    <select id="to">
+        <option value="binary">Binary Number</option>
+        <option value="octal">Octal Number</option>
+        <option value="decimal">Decimal Number</option>
+        <option value="hexadecimal">Hexadecimal Number</option>
+    </select>
+    <br><br>
+    <button type="button" onclick="con()">Convert</button>
+
+
+    <label>Result</label>
+    <input type="text" id="res">
+    <button type="button" onclick="copy()">Copy</button>
+    <button type="button" onclick="cut()">Cut</button>
+    <button type="button" onclick="clearInputs()">Clear</button>
+
+    <script>
+        // Clear input fields
+        function clearInputs() {
+            document.getElementById("d1").value = "";
+            document.getElementById("res").value = "";
+        }
+
+        // Check if number is even or odd
+        function isEven() {
+            let num = Number(document.getElementById("d1").value)
+            if (num % 2 == 0) {
+                document.getElementById("res").value = "Even Number"
+            } else {
+                document.getElementById("res").value = "Odd Number"
+            }
+        }
+
+        // Check if number is positive, negative or zero
+        function isPostive() {
+            let num = Number(document.getElementById("d1").value)
+            if (num > 0) {
+                document.getElementById("res").value = "Positive Number"
+            } else if (num < 0) {
+                document.getElementById("res").value = "Negative Number"
+            } else {
+                document.getElementById("res").value = "Zero"
+            }
+        }
+
+        // Find the factors of the number
+        function isFactor() {
+            let num = Number(document.getElementById("d1").value)
+            let c = ""
+            for (let i = 1; i <= num; i++) {
+                if (num % i == 0)
+                    c = c + i + ","
+            }
+            document.getElementById("res").value = c
+        }
+
+        // Sum of natural numbers up to the given number
+        function SumOfNatural_Number() {
+            let num = Number(document.getElementById("d1").value)
+            if (num < 0) {
+                document.getElementById("res").value = "Your number is not a natural number"
+            } else {
+                let s = 0
+                for (let i = 1; i <= num; i++) {
+                    s = s + i
+                }
+                document.getElementById("res").value = s
+            }
+        }
+
+        // Check if the number is prime
+        function isPrimeNumber() {
+            let num = Number(document.getElementById("d1").value)
+            if (num < 0) {
+                document.getElementById("res").value = "Not Prime Number"
+            }
+            else if(num===1 || num===0){
+                document.getElementById("res").value = "NonprimeNeitherComposite"
+
+            }
+            else {
+                let c = 0
+                for (let i = 1; i <= num; i++) {
+                    if (num % i == 0) {
+                        c = c + 1
+                    }
+                }
+                if (c == 2) {
+                    document.getElementById("res").value = "Prime Number"
+                } else {
+                    document.getElementById("res").value = "NonPrime(Composite) Number"
+                }
+            }
+        }
+        function isPalindrome() {
+            let num = Number(document.getElementById("d1").value)
+            let old_num = num
+            let result = 0
+            while (num > 0) {
+                let last_num = num % 10
+                result = result * 10 + last_num
+                num = Math.floor(num / 10)
+
+            }
+            if (old_num === result) {
+
+                document.getElementById("res").value = "Palindrome  Number"
+            } else {
+                document.getElementById("res").value = "Not Palindrome  Number"
+            }
+
+        }
+
+        function isArmstrongNumber() {
+            let num = Number(document.getElementById("d1").value);
+            let old_num = num;
+
+            // Get the number of digits in the number
+            let length = String(old_num).length;
+
+            let result = 0;
+
+            // Calculate the Armstrong number
+            while (num > 0) {
+                let last_num = num % 10;
+                result += Math.pow(last_num, length); // Use Math.pow for exponentiation
+                num = Math.floor(num / 10);
+            }
+
+            // Compare the result with the original number
+            if (old_num === result) {
+                document.getElementById("res").value = "Armstrong Number";
+            } else {
+                document.getElementById("res").value = "Not Armstrong Number";
+            }
+        }
+
+        // Copy the result to clipboard
+        function copy() {
+            let res = document.getElementById("res");
+            res.select();
+            document.execCommand("copy");
+            // alert("Result copied to clipboard!");
+        }
+
+        // Cut (copy + clear) the result
+        function cut() {
+            let res = document.getElementById("res");
+            res.select();
+            document.execCommand("copy");
+            res.value = ""; // Clear the result field after cutting
+            // alert("Result cut and copied to clipboard!");
+        }
+
+        function isSquare() {
+
+            let num = Number(document.getElementById("d1").value);
+            let sq = Math.pow(num, 2)
+            document.getElementById("res").value = sq
+
+        }
+
+        function isSquareCube() {
+
+            let num = Number(document.getElementById("d1").value);
+            let sqcube = Math.pow(num, 3)
+            document.getElementById("res").value = sqcube
+
+
+        }
+
+        function isSqureRoot() {
+
+
+            let num = Number(document.getElementById("d1").value);
+            let sr = Math.sqrt(num)
+
+            document.getElementById("res").value = sr
+
+            if (isNaN(num)) {
+                alert("Please enter a valid number.");
+                document.getElementById("res").value = "";
+                return;
+            }
+
+        }
+
+        function isfactorial() {
+            let num = Number(document.getElementById("d1").value);
+            let f = 1
+            if (isNaN(num)) {
+                alert("Please enter a valid number.");
+                document.getElementById("res").value = "";
+                return;
+            }
+
+            for (let i = 1; i <= num; i++) {
+                f = f * i
+            }
+
+            document.getElementById("res").value = f
+
+        }
+        function isRootCube() {
+
+            let num = Number(document.getElementById("d1").value);   // 64 
+
+            if (isNaN(num)) {
+                alert("Please enter a valid number.");
+                document.getElementById("res").value = "";
+                return;
+            }
+
+            let sr = Math.cbrt(num)
+
+            document.getElementById("res").value = sr     
+
+}
+
+
+
+function con() {
+            let num = document.getElementById("d1").value.trim();
+            let fromBase = document.getElementById("from").value;
+            let toBase = document.getElementById("to").value;
+            let result = '';
+
+            // Check if the input is empty
+            if (num === "") {
+                document.getElementById("res").value = "Please enter a number.";
+                return;
+            }
+
+            // Validate input based on selected 'From' base
+            let decimalNumber;
+            if (fromBase === "bin") {
+                // Ensure the number is a valid binary number
+                if (!/^[01]+$/.test(num)) {
+                    document.getElementById("res").value = "Invalid Binary Number.";
+                    return;
+                }
+                decimalNumber = parseInt(num, 2);
+            } else if (fromBase === "octal") {
+                // Ensure the number is a valid octal number
+                if (!/^[0-7]+$/.test(num)) {
+                    document.getElementById("res").value = "Invalid Octal Number.";
+                    return;
+                }
+                decimalNumber = parseInt(num, 8);
+            } else if (fromBase === "decimal") {
+                // Ensure the number is a valid decimal number
+                if (!/^\d+$/.test(num)) {
+                    document.getElementById("res").value = "Invalid Decimal Number.";
+                    return;
+                }
+                decimalNumber = parseInt(num, 10);
+            } else if (fromBase === "hexadecimal") {
+                // Ensure the number is a valid hexadecimal number
+                if (!/^[0-9A-Fa-f]+$/.test(num)) {
+                    document.getElementById("res").value = "Invalid Hexadecimal Number.";
+                    return;
+                }
+                decimalNumber = parseInt(num, 16);
+            }
+
+            // Convert decimal number to the target base
+            if (toBase === "binary") {
+                result = decimalNumber.toString(2);
+            } else if (toBase === "octal") {
+                result = decimalNumber.toString(8);
+            } else if (toBase === "decimal") {
+                result = decimalNumber.toString(10);
+            } else if (toBase === "hexadecimal") {
+                result = decimalNumber.toString(16);
+            }
+
+            // Display the result
+            document.getElementById("res").value = result.toUpperCase();
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
